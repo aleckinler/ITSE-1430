@@ -1,0 +1,37 @@
+uh notes i guess
+see sharp lololololol
+
+---JANUARY 25---
+KEYWORD - identifier important to the compiler
+OTHER IDENTIFIERS are important to YOU, THE PROGRAMMER
+a string - just a line of text (string literal is like, a qoute or someshit)
+a type - a category of data (numerics, size of value, precision)
+statements do not have values and types, expressions do! expressions output data, statements are more general i guess?
+if data has a VALUE, then it has a TYPE
+VARIABLES are EXPRESSIONS, and are NAMED MEMORY LOCATIONS (allows for access of data in short form)
+Statements in C# end in a semicolon.
+PRIMITIVE DATA TYPE - type known by the language (KEYWORDS) (almost always simple) ex. INT for Integer
+C# has a lot! notable primitive types include integrals: SBYTE, SHORT, INT, LONG - BYTE, USHORT, UINT, ULONG
+					          SIGNED - can contain negatives | UNSIGNED - only positive
+LITERAL - CONSTANT VALUES(always INT) - fixed value set at the point of compilation
+floating point values (FLOAT) have a whole number and a decimal: FLOAT(5-7 digits of precision), DOUBLE(12-15 prec.), DECIMAL(80 prec. really only used for finnancial calculations)
+FLOAT literals are always considered DOUBLE
+NEVER USE INTEGER VALUE FOR A BOOLEAN (true or false, a binary) VALUE NEVER!!!!!
+char (character) 2 bytes - represents all characters that can be typed on a keyboard
+char literals are enclosed with 'single quotes' and a SINGLE character ex. 'e' (CASE SENSITIVE)
+string literals are enclosed with "double quotes" and a string (duh) ex. "hello"
+STRING and INT are likely most common
+DOUBLE and BOOL are second place
+DECIMAL and CHAR are bronze
+DateTime - what do you think this represents (theres also DateOnly and TimeOnly)
+TimeSpan - measures duration, not UTC timecode
+Guid - identifies unique computer systems (stands for globally unique identifier, basically a huge string)
+VARIABLE DECLARATION is like this T(type) id(identifier)
+VARIABLES should always be descriptive names that are NOUNS!!! ex. hoursWorked
+VARIABLES are "camel-cased" by design (lowercase first word, uppercase on word boundary)
+IDENTIFIER RULES (not-keywords) must start with a letter or underscore, then may be followed by letters, digits, or underscores
+				cannot be a keyword (of course)
+				cannot already exist in the scope (scope is the lifetime or your variables, ends at the block)
+SCOPE is important to WELL DEFINED RULES (the longer a variable is used, the mor elikely it is to be misused)
+LITERALS have a value and type, you can read them | VARIABLES have a value and type, you can write them or read them
+google c# definitely assigned rule
