@@ -4,7 +4,48 @@ namespace Demo
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main ( string[] args )
+        {
+            //DemoPrimitives();
+
+            //Arithmetic operators
+            int x = 10, y = 20, z;
+
+            z = x + y;
+            z = x - y;
+            z = x * y;
+            z = x / y;
+            z = x % y;
+
+            //x++ prefix increment
+            //temp = x;
+            //x += 1;
+            // temp;
+            x = 10;
+            x++;
+
+            //++x postfix increment (more common as the value doesnt matter, thus faster)
+            //x += 1;
+            //x;
+            ++x;
+
+            //x-- prefix decrement
+            //temp = x;
+            //x -= 1;
+            // temp;
+            x = 10;
+            x--;
+
+            //++x postfix decrement
+            //x -= 1;
+            //x;
+            --x;
+            
+            //essentially, prefix returns the original value(expression value) and the new one(variable "x" value, postfix only returns the new value
+            //ALWAYS increase or decrease by 1
+        }
+
+        static void DemoPrimitives ()
         {
             //Primitives
             //Integrals

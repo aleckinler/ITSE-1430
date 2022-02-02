@@ -34,7 +34,7 @@ IDENTIFIER RULES (not-keywords) must start with a letter or underscore, then may
 				cannot already exist in the scope (scope is the lifetime or your variables, ends at the block)
 SCOPE is important to WELL DEFINED RULES (the longer a variable is used, the mor elikely it is to be misused)
 LITERALS have a value and type, you can read them | VARIABLES have a value and type, you can write them or read them
-google c# definitely assigned rule
+**google c# definitely assigned rule
 
 ---JANUARY 27---
 DONT CREATE VARIABLES YOU DONT NEED (its wasteful cmon man)
@@ -51,7 +51,7 @@ L value (the L stands for left) must be writiable (thus it has to be a variable)
 WHEN YOU SEE AN ASSIGNMENT, EVALUATE THE RIGHT SIDE FIRST!! (pretty much everything else is left associative)
 
 ---FEBRUARY 1---
-google chaining "if else if"
+**google chaining "if else if"
 RELATIONAL OPERATOR ALWAYS RETURN BOOLEAN(type) - the answer is always either true or false
 DECLARATION - declaring the existence of (usually functions or variables) something (including the neccesary info the compiler needs to refer to it)
 DEFINITION - in addition to the declaration, this is the implementation of a function/variable/etc. (the compiler does not care about the implementation)
@@ -82,3 +82,23 @@ IN C# OUTPUT PARAMETERS are notated as: out T id
 since its an output parameter, it still must be a variable, but the function cannot read the output parameter, it only provides the location that the parameter will write to when its done
 dont trust user input, always write defensively and validate
 FUNCTIONS THAT HAVE OUTPUT PARAMETERS ARE GARUNTEED TO HAVE WRITTEN A VALUE TO THAT PARAMETER
+
+INTEGER DIVISION PROBLEM integer divided by an integer will always be an integer(?)
+arithmetic operators must be the same type (this is where type coercion comes in)
+type coercion is when the compiler IMPLICITLY changes the type of an expression
+the compiler isnt actually changing any code, it only is for calculative purposes
+when the compiler sees 10/3.0 the 10 would be considered a double (since a double is larger than an int) the result would also be a double
+**google Modulo in C programming its weird but it returns the remainder of an integer division
+COMBINATION OPERATORS - +=, -=, *=, /=, %= EX. x+=10 is equivalent to x=x+10
+
+special case operators - x++, ++x, X--, --x
+prefix increment, postfix inc, prefix decrement, postfix dec
+increase or decrease variables by values of 1 ONLY
+this shit only works with integral variables
+if the result of your arithmetic is outside the range of its data type, garunteed ERROR
+
+while statement - while (Eb)
+		    S;
+**google loop variant
+do while - equivalent to the while statment BUT its a post test
+do statement - so S while (Eb),

@@ -35,38 +35,47 @@ namespace MovieLib.ConsoleHost
 
         static bool ReadBoolean ( string message )
         {
-            //TODO: fix prompt
+            //TODO: fix prompt DONE! Thats what the extra console.WriteLine are for on the bottom *note the curly braces since there are now multiple actions in each if statment
             Console.Write(message);
 
-            ConsoleKeyInfo key = Console.ReadKey();
+            do
+            {
+                ConsoleKeyInfo key = Console.ReadKey();
 
-            //TODO: Validate
-            if (key.Key == ConsoleKey.Y)
-                return true;
-            else if (key.Key == ConsoleKey.N)
-                return false;
-
-            return false;
+                if (key.Key == ConsoleKey.Y)
+                {
+                    Console.WriteLine('Y');
+                    return true;
+                } else if (key.Key == ConsoleKey.N)
+                {
+                    Console.WriteLine('N');
+                    return false;
+                };
+            } while (true);
         }
 
         private static int ReadInt32 ( string message, int minimumValue )
         {
             Console.Write(message);
 
-            string input = Console.ReadLine();
+            while (true) //loops until the expression we gave this is false (it's technically infinite lmao)
+            {
 
-            //TODO: Validate
-            //int result = Int32.Parse(input); - this does not validate input
-           
-            //heres an example of an output parameter, input validation is the most common use case for them
-            //int result;
-            //if (Int32.TryParse(input, out result))
-            int result;
-            if (Int32.TryParse(input, out int result)) //this is an inline variable declaration, and does the exact same thing as the code above (this is only allowed with output parameters)
-            if (result >= minimumValue)
-                return result;
-            //the negative 1 is arbitrary
-            return -1;
+
+                string input = Console.ReadLine();
+
+                //Validation method:
+                //int result = Int32.Parse(input); - this does not validate input
+
+                //heres an example of an output parameter, input validation is the most common use case for them
+                //int result;
+                //if (Int32.TryParse(input, out result))
+                if (Int32.TryParse(input, out int result)) //this is an inline variable declaration, and does the exact same thing as the code above (this is only allowed with output parameters)
+                    if (result >= minimumValue)
+                        return result;
+
+                Console.WriteLine("Value must be >= " + minimumValue);
+            };
         }
 
         //Functions naming rules
