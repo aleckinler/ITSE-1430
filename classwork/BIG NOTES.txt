@@ -35,3 +35,50 @@ IDENTIFIER RULES (not-keywords) must start with a letter or underscore, then may
 SCOPE is important to WELL DEFINED RULES (the longer a variable is used, the mor elikely it is to be misused)
 LITERALS have a value and type, you can read them | VARIABLES have a value and type, you can write them or read them
 google c# definitely assigned rule
+
+---JANUARY 27---
+DONT CREATE VARIABLES YOU DONT NEED (its wasteful cmon man)
+declare your variable THEN ASSIGN IT
+good practice is to use an INITIALIZER - T id[Et];
+DECLARING FUNCTIONS - [modifier] T(or void) id ([parameter]) { S* }
+Console.WriteLine ( string ) - Console.ReadLine ( ) ->string
+IF STATEMENT - if (Expression bool)
+		   S;
+USE CURLYS IF THERE IS MORE THAN ONE STATEMENT
+dunno if this is java only but curly braces denote objects
+RELATIONAL OPERATORS - Et relation Et - the operators are as follows >, <, =>, =<, !=, ==
+L value (the L stands for left) must be writiable (thus it has to be a variable)
+WHEN YOU SEE AN ASSIGNMENT, EVALUATE THE RIGHT SIDE FIRST!! (pretty much everything else is left associative)
+
+---FEBRUARY 1---
+google chaining "if else if"
+RELATIONAL OPERATOR ALWAYS RETURN BOOLEAN(type) - the answer is always either true or false
+DECLARATION - declaring the existence of (usually functions or variables) something (including the neccesary info the compiler needs to refer to it)
+DEFINITION - in addition to the declaration, this is the implementation of a function/variable/etc. (the compiler does not care about the implementation)
+PARAMETERS vs ARGUMENTS
+PARAMETERS do not exist outside of function definitions
+ARGUMENTS are the data you pass to the function and compare with parameters
+THE ORDER IN WHICH THE FUNCTION APPEARS DOES NOT MATTER
+SIGNATURE OF A FUNCTION DECLARATION = modifier T(void) id ([parameters]) { }
+parameters = T id{, T id}
+parameters are nouns and camelCased (public facing, so always use descriptive parameter names)
+
+CALL STACK FUNCTION - apparently very important - how every programming language works
+the CALL STACK tracks function calls and thats it
+EX. entry -> main -> add movie -> ReadString function (think about the plate stack analogy)
+WITHIN A FUNCTION YOU MAY DECLARE LOCAL VARIABLES, when its done those variables are too
+
+3 KINDS OF PARAMETERS - input parameters - input/output parameters - output parameters
+INPUT PARAMETERS - most parameters, simple and easy to work with, refered to sometimes as passby value (you're only passing a copy of information into a parameter when you call a function, not the actual data)
+so for the lifetime of that function call, you have 2 copies of that information (in this class, you are likely to only use input parameters)
+IN C# INPUT PARAMETERS are notated as: T id
+
+INPUT/OUTPUT PARAMETERS - refered to as passby reference, it takes a value, but may provide and updated value as a result. It is for changing a cariables value and having that seen by other functions
+IN C# INPUT/OUTPUT PARAMETERS are notated as: ref T id
+seems like input/output parameters suck man
+
+OUTPUT PARAMETERS - the function caller provides no input, its technically write only
+IN C# OUTPUT PARAMETERS are notated as: out T id
+since its an output parameter, it still must be a variable, but the function cannot read the output parameter, it only provides the location that the parameter will write to when its done
+dont trust user input, always write defensively and validate
+FUNCTIONS THAT HAVE OUTPUT PARAMETERS ARE GARUNTEED TO HAVE WRITTEN A VALUE TO THAT PARAMETER

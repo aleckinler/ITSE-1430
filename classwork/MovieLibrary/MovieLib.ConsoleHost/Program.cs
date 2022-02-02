@@ -28,9 +28,25 @@ namespace MovieLib.ConsoleHost
             int releaseYear = ReadInt32("Enter the release year", 1900);
             string rating = ReadString("Enter a rating (e.g. PG, PG-13)", true);
             string genre = ReadString("Enter a genre (optional)", false);
-            bool isColor;
+            bool isColor = ReadBoolean("In color? (Y/N)");
             string description = ReadString("Enter a description (optional)", false);
 
+        }
+
+        static bool ReadBoolean ( string message )
+        {
+            //TODO: fix prompt
+            Console.Write(message);
+
+            ConsoleKeyInfo key = Console.ReadKey();
+
+            //TODO: Validate
+            if (key.Key == ConsoleKey.Y)
+                return true;
+            else if (key.Key == ConsoleKey.N)
+                return false;
+
+            return false;
         }
 
         private static int ReadInt32 ( string message, int minimumValue )
@@ -40,10 +56,16 @@ namespace MovieLib.ConsoleHost
             string input = Console.ReadLine();
 
             //TODO: Validate
-            int result = Int32.Parse(input);
+            //int result = Int32.Parse(input); - this does not validate input
+           
+            //heres an example of an output parameter, input validation is the most common use case for them
+            //int result;
+            //if (Int32.TryParse(input, out result))
+            int result;
+            if (Int32.TryParse(input, out int result)) //this is an inline variable declaration, and does the exact same thing as the code above (this is only allowed with output parameters)
             if (result >= minimumValue)
                 return result;
-
+            //the negative 1 is arbitrary
             return -1;
         }
 
