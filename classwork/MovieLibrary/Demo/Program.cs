@@ -7,7 +7,26 @@ namespace Demo
         static void Main ( string[] args )
         {
             //DemoPrimitives();
+            //DemoArithmetic();
 
+            //Strings
+            var payRate = 8.65;
+
+            var payRateString = payRate.ToString(); //if you need a string, very easy to tack on at the end when using var
+
+            //escape sequence - character sequence that represents something that is unprintable
+            //     \n - newline
+            //     \t - horizontal tab
+            //     \\ - single slash
+            //     \" - double quote
+            string literal = "Hello World\nBob";
+            string filePath = "C:\\windows\\system32";
+            string filePath2 = @"C:\windows\system32"; //verbatim string - no escape sequences allowed (prob wont use these outside of file/registry paths)
+            string literal2 = "\"Goodbye\"";
+        }
+
+        static void DemoArithmetic ()
+        {
             //Arithmetic operators
             int x = 10, y = 20, z;
 

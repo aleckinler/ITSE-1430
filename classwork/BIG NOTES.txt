@@ -102,3 +102,26 @@ while statement - while (Eb)
 **google loop variant
 do while - equivalent to the while statment BUT its a post test
 do statement - so S while (Eb),
+
+---FEBRUARY 8---
+DO WHILE (executes code 1 or more times) *just a reminder mainly*
+WHILE (executes code 0 or more times)
+NUMERIC FORMAT SPECIFIERS
+CONDITIONAL OPERATORS Ebool ? Etrue:Efalse (equivalent to if (Ebool) Etrue)
+							  else Efalse
+SWITCH statment (the most compicated, apparently)
+Switch ( E )
+{
+	{case statment}*               *needed*
+	{default statment}
+};
+
+case statement = Ecase : S;             Ecase must be unique within the statement
+default statement = default : S;
+THIS SHIT IS WAY FASTER THAN IF ELSE IF (and can end up producing less code total so thats cool)
+a CONSTANT EXPRESSION is an expression that can be created at compile time
+	this includes: literals, arithmetics, and Const 
+
+FALLTRHOUGH (C# does not support this by design) so every case statment must end with break or return, or you get a compiler error
+
+
