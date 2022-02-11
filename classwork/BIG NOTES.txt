@@ -123,5 +123,38 @@ a CONSTANT EXPRESSION is an expression that can be created at compile time
 	this includes: literals, arithmetics, and Const 
 
 FALLTRHOUGH (C# does not support this by design) so every case statment must end with break or return, or you get a compiler error
+this is also the only place you are allowed to do 2 statements without a block statement (dont rely on this)
+statement; break;(this break is exempt from the rule) another statment; would still need curlys
 
+FINAL OPERATORS - HOLY SHIT
+the logical operators! there are three:
+AND, OR, NOT
+&&   ||  !
+LOGICAL OR IS HIGHER PRIORITY THAN AND, SO DONT MIX USE PARANS
+**google SHORT CIRCUIT EVALUATION (improves performance and creates a good chain of actions)
 
+just use var lol
+ANYTHING CAN BE CONVERTED TO A STRING but not really the opposite is true
+
+---FEBRUARY 10---
+ALL STRING MODIFICATIONS REQUIRE A BRAND NEW STRING TO BE CREATED (so the original variable is not modified)
+strings become less efficient as they become larger
+String.Compare is a function that compares two strings and returns an int (handles null too)
+[String.Compare(string,string)->int]
+<0 | A<B
+0  | A==B
+>0 | A>B
+STRINGS ARE IMMUTABLE!!!
+
+heres some useful string functions (can be seen with [string]. or String.)
+[string].StartsWith and [string].EndsWith
+[string].Trim( ) -> string (removes all white space from a string) USEFUL FOR STRING COMPARISON
+EX. "Hello" and " Hello " ARE NOT CONSIDERED EQUAL, BUT WOULD BE WITH TRIM
+
+DA RUNTIME BABY!!!!!!!!!! OOOOOYEAAAA
+Managed Apps : C# or VISUALBASIC | Unmanaged Apps: everything else
+managed apps rely on Common Language Runtime(CLR), unmanaged apps run on proprietary runtime
+C# compiles your code to run on the CLR (which is not a virtual machine)
+CLR normalizes everything below it from eveything above it (i guess?)
+CLR allows inter-operability to be feasable!
+**YOU NEED TO GOOGLE LIKE ALL THIS SHIT (also its in the textbook so yeah)

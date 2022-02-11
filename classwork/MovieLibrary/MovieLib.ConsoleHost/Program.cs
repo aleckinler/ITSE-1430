@@ -14,6 +14,7 @@ namespace MovieLib.ConsoleHost
         {
             //Block style declaration - all declared at the top of the function
             //On demand/inline declaration - cariables are declared as needed
+            var done = false;
             do
             {
 
@@ -35,22 +36,44 @@ namespace MovieLib.ConsoleHost
                     case 'v':
                     case 'V': ViewMovie(); break;
 
+                    case 'd':
+                    case 'D': DeleteMovie(); break;
+
                     case 'q':
                     case 'Q':
                     {
                         if (ConfirmQuit())
-                            break;
+                            done = true;
                         
                         break;
                     };
                     default: Console.WriteLine("Unknown option"); break;
                 };
-            } while (true);
+            } while (!done);
         } //this is a glorified if else if lmao
+
+        private static void DeleteMovie ()
+        {
+            if (String.IsNullOrEmpty(title))
+            {
+                Console.WriteLine("No movie to delete");
+                return;
+            };
+
+            //TODO: delete the movie
+            if (ReadBoolean($"Are you sure you want to delete '{title}' (Y/N)"))
+            title = "";
+        }
 
         private static void ViewMovie ()
         {
             //TODO: does movie exist
+            if (String.IsNullOrEmpty(title))
+            {
+                Console.WriteLine("No movie to view");
+                return;
+            };
+            
             Console.WriteLine(title);
 
             //releaseYear (Run Length: duration mins) rating
@@ -164,44 +187,56 @@ namespace MovieLib.ConsoleHost
         {
             Console.WriteLine(message);
 
-            string input = Console.ReadLine();
+            do
+            {
 
-            //TODO: validate input, if its required
+                string input = Console.ReadLine();
 
-            return input;
-        }
+                //TODO: validate input, if its required
+                if (!required || !String.IsNullOrEmpty(input))
+                    return input;
+
+                Console.WriteLine("Value is not required");
+            } while (true);
+        } //#endregion is a grouping construct, if you're into that i guess (probably google this)
 
         static char DisplayMenu ()
         //NOT VOID since we want return to function
         {
             //the letter) determines input
+            Console.WriteLine("Movie Library");
+            //Console.WriteLine("---------------");
+            Console.WriteLine("".PadLeft(20, '~'));
             Console.WriteLine("A)dd Movie");
             Console.WriteLine("V)iew Movie");
             Console.WriteLine("E)dit Movie");
             Console.WriteLine("D)elete Movie");
             Console.WriteLine("Q)uit");
 
-            //this is an example of inline declaration (less likely to need to assign the variable a dummy value early on)
-            string input = Console.ReadLine();
-
-            //INPUT VALIDATION
-            //this is inefficient, use IF ELSE statement
-            if (input == "A")
-                return 'A';
-            else if (input == "V")
-                return 'V';
-            else if (input == "E")
-                return 'E';
-            else if (input == "D")
-                return 'D';
-            else if (input == "Q")
-                return 'Q';
-            else
+            do
             {
-                //using curlys since there is more than one statement tied to the else function
-                Console.WriteLine("Invalid Input");
-                return 'X';
-            }; //this semicolon is just here for good practice, all statements in C# end with a semicolon
+                //this is an example of inline declaration (less likely to need to assign the variable a dummy value early on)
+                string input = Console.ReadLine();
+
+                //INPUT VALIDATION
+                //this is inefficient, use IF ELSE statement
+                if (String.Compare(input, "A", true) ==0)
+                    return 'A';
+                else if (String.Compare(input, "V", true) ==0)
+                    return 'V';
+                else if (String.Equals(input, "E", StringComparison.CurrentCultureIgnoreCase))
+                    return 'E';
+                else if (String.Compare(input, "D", true) ==0)
+                    return 'D';
+                else if (String.Compare(input, "Q", true) ==0)
+                    return 'Q';
+                else
+                {
+                    //using curlys since there is more than one statement tied to the else function
+                    Console.WriteLine("Invalid Input");
+                    return 'X';
+                }; //this semicolon is just here for good practice, all statements in C# end with a semicolon
+            } while (true);
         }
     }
 }

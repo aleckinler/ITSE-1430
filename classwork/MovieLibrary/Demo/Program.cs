@@ -11,10 +11,11 @@ namespace Demo
 
             //Strings
             var payRate = 8.65;
-
             var payRateString = payRate.ToString(); //if you need a string, very easy to tack on at the end when using var
+            payRateString = 5.ToString();
+            payRateString = (4 + 5).ToString();
 
-            //escape sequence - character sequence that represents something that is unprintable
+            //escape sequence - character sequence that represents something that is unprintable (also are one character in the string literal)
             //     \n - newline
             //     \t - horizontal tab
             //     \\ - single slash
@@ -23,6 +24,39 @@ namespace Demo
             string filePath = "C:\\windows\\system32";
             string filePath2 = @"C:\windows\system32"; //verbatim string - no escape sequences allowed (prob wont use these outside of file/registry paths)
             string literal2 = "\"Goodbye\"";
+
+            string nullString = null; //null means no value
+            string emptyString = "";  //the empty string literal is technically less characters, but is less self explanatory
+            string emptyStringToo = String.Empty;
+            bool areNotEqual = nullString == emptyString;
+            //nullString.ToString(); - causes a crash
+            //nullString. + emptyString; - will not cause a crash
+            bool isEmpty = (emptyString == null || emptyString == ""); //EXAMPLE OF CHECKING EMPTY STRINGS (also logical or) //ALSO ALSO dont do this!!
+            isEmpty = String.IsNullOrEmpty(emptyString); //WAY cleaner, use your functions!!!! they're useful!!!
+            isEmpty = emptyString.Length == 0; //if this is null, it will crash, so consider using || statement like the earlier statement
+
+            //case sensitive
+            string lowerName = "bob", upperName = "BOB";
+            bool areStringsEqual = lowerName == upperName; //false
+            areStringsEqual = lowerName.ToUpper() == upperName.ToUpper(); //normalized, so statement is now true (generally better to use ToUpper than ToLower)
+                                                                          //also this is expensive in terms of processing power
+            areStringsEqual = String.Compare(lowerName, upperName, true) == 0;  //StringComparison.IgnoreCase
+            areStringsEqual = String.Equals(lowerName, upperName, StringComparison.CurrentCultureIgnoreCase);
+
+            //useful string functions
+            lowerName =" Bob ";
+            lowerName = lowerName.Trim(); //"Bob" //TrimStart, TrimEnd (self explanatory)
+            bool startsWithLetter = lowerName.StartsWith("B"); //EndsWith("B");
+
+            //Add leading spaces
+            lowerName.PadLeft(20); //PadRight (adds spacing to respective side, DOES NOT ADD 20 SPACES, ONLY PADS IF STRING IS LESS THAN *20* CHARS)
+
+            //Joining Strings (THIS WILL BE GREAT FOR DISPLAYING CHARACTER INFO ON LAB 1) actually joins anything too
+            string fullName = String.Join(" ", "Bob", "Williams"); //"Bob Williams"
+            string number = String.Join(",", 1, 2, 3, 4); //"1, 2, 3, 4"
+
+            //Split a string
+            var tokens = "1 | 2 | 3 | 4".Split("|");
         }
 
         static void DemoArithmetic ()
