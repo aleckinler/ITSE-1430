@@ -5,8 +5,21 @@ namespace CharacterCreator.ConsoleHost
     class Program
     {
         static void Main(string[] args)
-        {
+        {        
             var done = false;
+            var intro = false;
+
+            do
+            {
+                Console.WriteLine("Alec Kinler");
+                Console.WriteLine("ITSE 1430");
+                Console.WriteLine("2/17/2022");
+                Console.WriteLine();
+
+                intro= true;
+
+            } while (!intro);
+
             do
             {
                 char input = DisplayMenu();
@@ -28,17 +41,19 @@ namespace CharacterCreator.ConsoleHost
 
                             break;
                         };
-                    default: Console.WriteLine("Unknown option"); break;
+                    default: Console.WriteLine("Unknown option");
+                             Console.WriteLine(); break;
                 };
             } while (!done);
         }
 
         private static void EditCharacter ()
         {
-            //TODO: edit character functionality
+
             if (String.IsNullOrEmpty(name))
             {
                 Console.WriteLine("No character to edit");
+                Console.WriteLine();
                 return;
             };
 
@@ -46,6 +61,7 @@ namespace CharacterCreator.ConsoleHost
             do
             {
                 Console.WriteLine("What would you like to edit?");
+                Console.WriteLine();
 
                 char input = EditMenu();
 
@@ -57,6 +73,7 @@ namespace CharacterCreator.ConsoleHost
 
                     case 'p': profession = ReadProfession("Enter your character's profession - 1. Fighter - 2. Ranger - 3. Cleric - 4. Wizard - 5. Rogue", true); break;
 
+                    //the numbers as return value refer to ability scores since some of them start with the same letter
                     case '1': strength = ReadInt32("Enter your character's strength value (1-100)", 1, 100); break;
 
                     case '2': constitution = ReadInt32("Enter your character's constitution value (1-100)", 1, 100); break;
@@ -71,7 +88,8 @@ namespace CharacterCreator.ConsoleHost
 
                     case '0': done = true; break;
 
-                    default: Console.WriteLine("Unknown option"); break;
+                    default: Console.WriteLine("Unknown option");
+                             Console.WriteLine(); break;
                 };
             } while (!done);
         }
@@ -82,6 +100,7 @@ namespace CharacterCreator.ConsoleHost
             if (String.IsNullOrEmpty(name))
             {
                 Console.WriteLine("No character to delete");
+                Console.WriteLine();
                 return;
             };
 
@@ -94,6 +113,7 @@ namespace CharacterCreator.ConsoleHost
             if (String.IsNullOrEmpty(name))
             {
                 Console.WriteLine("No character to view");
+                Console.WriteLine();
                 return;
             };
 
@@ -101,13 +121,14 @@ namespace CharacterCreator.ConsoleHost
             Console.WriteLine("".PadLeft(80, '-'));
             Console.WriteLine(name);
             Console.WriteLine("".PadLeft(80, '-'));
-            Console.WriteLine($"{race} - {profession}");
+            Console.WriteLine($"Race: {race} - Profession: {profession}");
             Console.WriteLine("".PadLeft(80, '-'));
             Console.WriteLine($"Strength: {strength} - Constitution: {constitution} - Intellegnce: {intellect} - Charisma: {charisma} - Dexterity: {agility}");
             Console.WriteLine("".PadLeft(80, '-'));
             Console.WriteLine(description);
             Console.WriteLine("".PadLeft(80, '-'));
             Console.WriteLine("".PadLeft(80, '~'));
+            Console.WriteLine();
         }
 
         static bool ConfirmQuit ()
@@ -196,6 +217,7 @@ namespace CharacterCreator.ConsoleHost
             do
             {
                 string input = Console.ReadLine();
+                //TODO: lore text for races?
 
                 if (!required || !String.IsNullOrEmpty(input) && input == "1")
                     return "Human";
@@ -219,6 +241,7 @@ namespace CharacterCreator.ConsoleHost
             do
             {
                 string input = Console.ReadLine();
+                //TODO: lore text for classes?
 
                 if (!required || !String.IsNullOrEmpty(input) && input == "1")
                     return "Fighter";
@@ -245,6 +268,7 @@ namespace CharacterCreator.ConsoleHost
             Console.WriteLine("4. Delete Character");
             Console.WriteLine("".PadLeft(20, '~'));
             Console.WriteLine("0. Quit");
+            Console.WriteLine();
 
             do
             {
@@ -263,26 +287,31 @@ namespace CharacterCreator.ConsoleHost
                 else
                 {
                     return 'X';
+                    //does this do anything? the program works as intended and i just kept this as a remnant from the movie library
                 };
             } while (true);
         }
 
         static char EditMenu ()
         {
-            Console.WriteLine("1. Edit character name");
-            Console.WriteLine("2. Edit character race");
-            Console.WriteLine("3. Edit character profession");
-            Console.WriteLine("4. Edit character Strength score");
-            Console.WriteLine("5. Edit character Constitution score");
-            Console.WriteLine("6. Edit character Intellegence score");
-            Console.WriteLine("7. Edit character Charisma score");
-            Console.WriteLine("8. Edit character Dexterity score");
+            Console.WriteLine($"1. Edit character name ( Currently: {name})");
+            Console.WriteLine($"2. Edit character race (Currently: {race})");
+            Console.WriteLine($"3. Edit character profession (Currently {profession})");
+            Console.WriteLine($"4. Edit character Strength score (Currently {strength})");
+            Console.WriteLine($"5. Edit character Constitution score (Currently {constitution})");
+            Console.WriteLine($"6. Edit character Intellegence score (Currently {intellect})");
+            Console.WriteLine($"7. Edit character Charisma score (Currently {charisma})");
+            Console.WriteLine($"8. Edit character Dexterity score (Currently {agility})");
             Console.WriteLine("9. Edit character description");
+            //current description info moved to its own line because some people have way too much lore
+            Console.WriteLine($"(Currently: {description})");
             Console.WriteLine("0. Return to menu");
+            Console.WriteLine();
 
             do
             {
                 string editInput = Console.ReadLine();
+                //dunno if this var needs to be different from other input vars since its scope is only this block, but i wanted to be safe
 
                 if (String.Compare(editInput, "1", true) == 0)
                     return 'n';
@@ -292,7 +321,7 @@ namespace CharacterCreator.ConsoleHost
                     return 'p';
                 else if (String.Compare(editInput, "9", true) == 0)
                     return 'd';
-                //the numbers as return value refer to ability scores since some of them start with the same letter
+                //again, the numbers as return value refer to ability scores since some of them start with the same letter
                 else if (String.Compare(editInput, "4", true) == 0)
                     return '1';
                 else if (String.Compare(editInput, "5", true) == 0)
@@ -303,7 +332,7 @@ namespace CharacterCreator.ConsoleHost
                     return '4';
                 else if (String.Compare(editInput, "8", true) == 0)
                     return '5';
-                //quit is consistently 0 though (dunno if thats bad practice)
+                //quit/return functions are consistently 0 though (dunno if thats bad practice)
                 else if (String.Compare(editInput, "0", true) == 0)
                     return '0';
                 else
