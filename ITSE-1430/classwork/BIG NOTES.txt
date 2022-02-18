@@ -158,3 +158,26 @@ C# compiles your code to run on the CLR (which is not a virtual machine)
 CLR normalizes everything below it from eveything above it (i guess?)
 CLR allows inter-operability to be feasable!
 **YOU NEED TO GOOGLE LIKE ALL THIS SHIT (also its in the textbook so yeah)
+
+---FEBRUARY 15---
+STATEMENTS JUST DO SOMETHING
+EXPRESSIONS HAVE A TYPE AND A VALUE
+@ VERBATIM STRING
+$ string interpolation
+SCOPE REFERS TO VARIABLES! VARIABLES!!!!!!!
+
+DRAWING -- PROGRAM (Object oriented programming demo)
+Square - length, origin				Draw()
+Rectangle - width, length, origin		Resize()
+Circle - radius, center				Move()
+Triangle a, b, c, origin			
+THESE ARE DATA POINTS				THESE ARE FUNCTIONS
+
+new T() = new instance of a type(class)
+**google the difference between variables and instances
+
+PUBLIC and INTERNAL are the only class modifiers (not refering to classes nested within classes)
+if NOT SPECIFIED it defaults to internal
+INTERNAL - ASSEMBLY ONLY - public to all of the code in the assembly it is declared in, but private to anything else
+PUBLIC - its public fuck you think this means
+PRIVATE - 
