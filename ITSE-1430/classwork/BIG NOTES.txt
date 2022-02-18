@@ -180,4 +180,10 @@ PUBLIC and INTERNAL are the only class modifiers (not refering to classes nested
 if NOT SPECIFIED it defaults to internal
 INTERNAL - ASSEMBLY ONLY - public to all of the code in the assembly it is declared in, but private to anything else
 PUBLIC - its public fuck you think this means
-PRIVATE - 
+PRIVATE - its only for declaring type, cant really be accessed outside of the obj
+
+---FEBRUARY 17---
+you're gonna need to read the book for this one bucko
+Fields - data points | read/writable | nouns
+Property - "data" | simple | read/writable BY CHOICE | easily controllable |
+Methods - Functionality | easily controllable | verbs

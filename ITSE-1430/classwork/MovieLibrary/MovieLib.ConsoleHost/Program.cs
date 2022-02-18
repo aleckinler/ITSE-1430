@@ -47,34 +47,34 @@ namespace MovieLib.ConsoleHost
                         
                         break;
                     };
-                    default: Console.WriteLine("Unknown option"); break;
+                    default: Console.WriteLine("No movie to view"); break;
                 };
             } while (!done);
         } //this is a glorified if else if lmao
 
         private static void DeleteMovie ()
         {
-            if (String.IsNullOrEmpty(title))
+            if (movie == null)
             {
                 Console.WriteLine("No movie to delete");
                 return;
             };
 
             //TODO: delete the movie
-            if (ReadBoolean($"Are you sure you want to delete '{title}' (Y/N)"))
-            title = "";
+            if (ReadBoolean($"Are you sure you want to delete '{movie._title}' (Y/N)"))
+                movie = null;
         }
 
         private static void ViewMovie ()
         {
             //TODO: does movie exist
-            if (String.IsNullOrEmpty(title))
+            if (movie == null)
             {
                 Console.WriteLine("No movie to view");
                 return;
             };
             
-            Console.WriteLine(title);
+            Console.WriteLine(movie._title);
 
             //releaseYear (Run Length: duration mins) rating
             //formatting 1 -string concatenation
@@ -86,7 +86,7 @@ namespace MovieLib.ConsoleHost
             //Console.WriteLine(temp);
 
             //Formatting 3 (the good one) - string interpolation (THE DOLLAH SIGN IS THE KEY BABY!!) also its idiot proof, will not compile if the expressions are not valid
-            Console.WriteLine($"{releaseYear} ({duration} mins) {rating}");
+            Console.WriteLine($"{movie._releaseYear} ({movie._duration} mins) {movie._rating}");
 
             //genre (Color | Black White)
             //Console.WriteLine(genre + " (" + isColor + ")");
@@ -95,13 +95,13 @@ namespace MovieLib.ConsoleHost
             //else
             //    Console.WriteLine($"{genre} (Black and White");
             //Conditional operator DA METHOD
-            Console.WriteLine($"{genre} ({(isColor ? "Color" : "Black and White")})"); //extra parantheses fixes the compiler error for some reason IT DEFINES THE BEGINNING AND END OF THE CONDITIONAL OPERATOR
+            Console.WriteLine($"{movie._genre} ({(movie._isClassic ? "Classic" : "Modern")})"); //extra parantheses fixes the compiler error for some reason IT DEFINES THE BEGINNING AND END OF THE CONDITIONAL OPERATOR
 
             //Console.WriteLine(duration);
             //Console>WriteLine(isColor);
             //Console.WriteLine(rating);
             //Console.WriteLine(genre);
-            Console.WriteLine(description);
+            Console.WriteLine(movie._description);
         }
 
         static bool ConfirmQuit ()
@@ -111,24 +111,32 @@ namespace MovieLib.ConsoleHost
         }
         private static void AddMovie ()
         {
-            title = ReadString("Enter a movie title: ", true);
-            duration = ReadInt32("Enter duration in minutes (>=0)", 0);
-            releaseYear = ReadInt32("Enter the release year", 1900);
-            rating = ReadString("Enter a rating (e.g. PG, PG-13)", true);
-            genre = ReadString("Enter a genre (optional)", false);
-            isColor = ReadBoolean("In color? (Y/N)");
-            description = ReadString("Enter a description (optional)", false);
-            //dont need to declare variables here anymore since they have been declared outside the function poggers
+            movie = new Movie();
+
+            do
+            {
+
+                movie.Title = ReadString("Enter a movie title: ", true);
+                movie._duration = ReadInt32("Enter duration in minutes (>=0)", 0);
+                movie._releaseYear = ReadInt32("Enter the release year", 1900);
+                movie._rating = ReadString("Enter a rating (e.g. PG, PG-13)", true);
+                movie._genre = ReadString("Enter a genre (optional)", false);
+                movie._isClassic = ReadBoolean("In classic? (Y/N)");
+                movie._description = ReadString("Enter a description (optional)", false);
+                //dont need to declare variables here anymore since they have been declared outside the function poggers
+
+                movie.CalculateBlackAndWhite();
+
+                var error = movie.Validate();
+                if (String.IsNullOrEmpty(error))
+                    return;
+
+                Console.WriteLine(error);
+            } while (true);
         }
 
         //Unit 1 ONLY!!! this is bad practice!!
-       static string title;
-       static int duration;
-       static int releaseYear;
-       static string rating;
-       static string genre;
-       static bool isColor;
-       static string description;
+        static Movie movie;
 
         static bool ReadBoolean ( string message )
         {
@@ -196,7 +204,7 @@ namespace MovieLib.ConsoleHost
                 if (!required || !String.IsNullOrEmpty(input))
                     return input;
 
-                Console.WriteLine("Value is not required");
+                Console.WriteLine("Value is required");
             } while (true);
         } //#endregion is a grouping construct, if you're into that i guess (probably google this)
 
