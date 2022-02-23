@@ -61,7 +61,7 @@ namespace MovieLib.ConsoleHost
             };
 
             //TODO: delete the movie
-            if (ReadBoolean($"Are you sure you want to delete '{movie._title}' (Y/N)"))
+            if (ReadBoolean($"Are you sure you want to delete '{movie.Title}' (Y/N)"))
                 movie = null;
         }
 
@@ -74,7 +74,7 @@ namespace MovieLib.ConsoleHost
                 return;
             };
             
-            Console.WriteLine(movie._title);
+            Console.WriteLine(movie.Title);
 
             //releaseYear (Run Length: duration mins) rating
             //formatting 1 -string concatenation
@@ -86,7 +86,7 @@ namespace MovieLib.ConsoleHost
             //Console.WriteLine(temp);
 
             //Formatting 3 (the good one) - string interpolation (THE DOLLAH SIGN IS THE KEY BABY!!) also its idiot proof, will not compile if the expressions are not valid
-            Console.WriteLine($"{movie._releaseYear} ({movie._duration} mins) {movie._rating}");
+            Console.WriteLine($"{movie.ReleaseYear} ({movie.Duration} mins) {movie.Rating}");
 
             //genre (Color | Black White)
             //Console.WriteLine(genre + " (" + isColor + ")");
@@ -95,13 +95,13 @@ namespace MovieLib.ConsoleHost
             //else
             //    Console.WriteLine($"{genre} (Black and White");
             //Conditional operator DA METHOD
-            Console.WriteLine($"{movie._genre} ({(movie._isClassic ? "Classic" : "Modern")})"); //extra parantheses fixes the compiler error for some reason IT DEFINES THE BEGINNING AND END OF THE CONDITIONAL OPERATOR
+            Console.WriteLine($"{movie.Genre} ({(movie.IsClassic ? "Classic" : "Modern")})"); //extra parantheses fixes the compiler error for some reason IT DEFINES THE BEGINNING AND END OF THE CONDITIONAL OPERATOR
 
             //Console.WriteLine(duration);
             //Console>WriteLine(isColor);
             //Console.WriteLine(rating);
             //Console.WriteLine(genre);
-            Console.WriteLine(movie._description);
+            Console.WriteLine(movie.Description);
         }
 
         static bool ConfirmQuit ()
@@ -113,19 +113,21 @@ namespace MovieLib.ConsoleHost
         {
             movie = new Movie();
 
+
             do
             {
 
                 movie.Title = ReadString("Enter a movie title: ", true);
-                movie._duration = ReadInt32("Enter duration in minutes (>=0)", 0);
-                movie._releaseYear = ReadInt32("Enter the release year", 1900);
-                movie._rating = ReadString("Enter a rating (e.g. PG, PG-13)", true);
-                movie._genre = ReadString("Enter a genre (optional)", false);
-                movie._isClassic = ReadBoolean("In classic? (Y/N)");
-                movie._description = ReadString("Enter a description (optional)", false);
+                movie.Duration = ReadInt32("Enter duration in minutes (>=0)", 0);
+                movie.ReleaseYear = ReadInt32("Enter the release year", 1900);
+                movie.Rating = ReadString("Enter a rating (e.g. PG, PG-13)", true);
+                movie.Genre = ReadString("Enter a genre (optional)", false);
+                movie.IsClassic = ReadBoolean("In classic? (Y/N)");
+                movie.Description = ReadString("Enter a description (optional)", false);
                 //dont need to declare variables here anymore since they have been declared outside the function poggers
 
-                movie.CalculateBlackAndWhite();
+                //movie.isBlackAndWhite = movie.ReleaseYear <= 1939;
+                //movie.CalculateBlackAndWhite();
 
                 var error = movie.Validate();
                 if (String.IsNullOrEmpty(error))
