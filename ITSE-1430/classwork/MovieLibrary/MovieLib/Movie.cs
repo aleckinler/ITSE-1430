@@ -98,6 +98,8 @@ namespace MovieLib
         /// <returns>returns error message if any or empty string otherwise.</returns>
         public string Validate (/* Movie this */) //this cant be a parameter cuz its actually a keyword
         {
+            var now = DateTime.Now; //this violates syntax rules as it is a property with a non-deterministic value, so it would need to be cached, which a property should not be
+
             var title = ""; //this local variable can do not harm because _title is specified as a field, so theres no conflict
             //title is required
             if (String.IsNullOrEmpty(_title))
@@ -120,7 +122,7 @@ namespace MovieLib
             return "";
         }
 
-        public int Id { get; private set; }
+        public int Id { get; private set; } //auto-compile syntax
         //{
         //    get { return _id; }
         //    private set { _id = value; } //mixed accessability, only getter OR setter (must be more restrictive than property)

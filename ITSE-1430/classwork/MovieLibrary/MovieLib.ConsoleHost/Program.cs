@@ -47,7 +47,7 @@ namespace MovieLib.ConsoleHost
                         
                         break;
                     };
-                    default: Console.WriteLine("No movie to view"); break;
+                    default: Console.WriteLine("Unknown option"); break;
                 };
             } while (!done);
         } //this is a glorified if else if lmao
@@ -95,7 +95,7 @@ namespace MovieLib.ConsoleHost
             //else
             //    Console.WriteLine($"{genre} (Black and White");
             //Conditional operator DA METHOD
-            Console.WriteLine($"{movie.Genre} ({(movie.IsClassic ? "Classic" : "Modern")})"); //extra parantheses fixes the compiler error for some reason IT DEFINES THE BEGINNING AND END OF THE CONDITIONAL OPERATOR
+            Console.WriteLine($"{movie.Genre} ({(movie.IsClassic ? "Classic" : "")})"); //extra parantheses fixes the compiler error for some reason IT DEFINES THE BEGINNING AND END OF THE CONDITIONAL OPERATOR
 
             //Console.WriteLine(duration);
             //Console>WriteLine(isColor);
@@ -138,7 +138,6 @@ namespace MovieLib.ConsoleHost
         }
 
         //Unit 1 ONLY!!! this is bad practice!!
-        static Movie movie;
 
         static bool ReadBoolean ( string message )
         {
@@ -241,12 +240,45 @@ namespace MovieLib.ConsoleHost
                 else if (String.Compare(input, "Q", true) ==0)
                     return 'Q';
                 else
-                {
                     //using curlys since there is more than one statement tied to the else function
                     Console.WriteLine("Invalid Input");
-                    return 'X';
-                }; //this semicolon is just here for good practice, all statements in C# end with a semicolon
             } while (true);
+        }
+
+        static Movie movie;
+
+        static void Display ( object data )
+        {
+            //assume a string
+
+            //c-style cast
+            //  (T) E
+            //  runtime error if its wrong
+            //  no way to validate at runtime
+            //  still compile time safe (string)10;
+
+            var dataString = (string)data;
+
+            //is operator
+            //  E is T -> boolean
+            //  still need a type cast
+            if (data is string)
+            {
+                dataString = (string)data;
+            };
+
+            //as operator
+            //  E as T (returns T or null)
+            // only works if T can contain null (string, object, class types)
+            dataString = data as string;
+            if (dataString != null) { };
+
+            //pattern matching - apparently nearly invalidates the as operator lmao
+            //  E is T id (boolean with id as typed value if true)
+            //  works with all types
+            if (data is string dataString2)
+            {
+            };
         }
     }
 }

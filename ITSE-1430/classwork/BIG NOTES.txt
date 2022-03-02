@@ -187,3 +187,101 @@ you're gonna need to read the book for this one bucko
 Fields - data points | read/writable | nouns
 Property - "data" | simple | read/writable BY CHOICE | easily controllable |
 Methods - Functionality | easily controllable | verbs
+
+---February 22--- (witch queen!)
+Objects - with a captial o!
+COMMON TYPE SYSTEM - all types are derived from the CTS - Objects
+Objects are essentially a base form of type, so all types are Objects
+ToString()
+Equals()
+GetHashCode()
+GetType()                   examples of Object
+apparently not used very often in modern code :(
+you can store anything you want in Objects! WOAH!
+problem with object is it dampens performance significantly aw shid...
+**google NULL COASLECSING OPERATOR and NULL CONDITIONAL
+COMBINE NULL CONDITIONAL AND NULL COASLECING TO ALWAYS RETURN THE SAME DATA TYPE
+
+---MARCH 1---
+WELCOME BACK, -STALKER- .
+IT ' S BEEN A FEW, HASN ' T IT -STALKER- ?
+REMEMBER - object is the base type of all other types - DON ' T FORGET THAT, -STALKER- .
+-an object can be null, just like a string, but can cause a program to crash
+ using the null conditional changes the type of the expression since it potentially returns null (ex. int 0r null)
+ I?.M ?? D is a combination of null coaslecing and conditional-
+INTERESTING, ISN ' T IT -STALKER- ? FOUND THAT SCRAWLED ON THE WALL OF THE CELL RIGHT NEXT TO YOURS. . . 
+TOO BAD HE DIDN ' T WRITE ANYTHING ELSE, SEEMED LIKE A SMART FELLA .
+WE DO HAVE A MANUSCRIPT FROM THE NIGHT BEFORE HE ESCAPED, THOUGH, TAKE A LOOK .
+-everything related to verbs or functionality is considered a method i think.
+ you typically use a proprty when you need a function performed quickly
+ you call a method when you require a decent amount of operating time
+ properties should never have side effects, otherwise the function is best performed as a method
+ properties should never need to be cached either, whereas methods cache the return value-
+THAT ' S ENOUGH, RIGHT ? A -STALKER- LIKE YOU SHOULDN ' T NEED ANY MORE TO START TRACKING HIM DOWN?
+YOU MAY BE A BIT RUSTY FROM YOUR YEARS IN HERE, -STALKER- , BUT I SEE THE MALICE IN YOUR EYES ISN ' T ANY DIMMER
+YOU GO FIND HIM , AND YOU MIGHT GET OUT OF THIS HELLHOLE WITH A COUPLE LIMBS, HA HA HA HA . . .
+NOW GO FETCH, OLD DOG . . .
+. . .
+. . .
+. . .
+-properties need to be consistently used for simple functions; methods are by proxy complex
+ look at the method name: is it get/setX? it probably should just be a property then-
+HUH, LOOK AT THAT . SEEMS YOU FOUND A CLUE, -STALKER- .
+LET ' S KEEP RUMMAGING AROUND IN HERE AND SEE WHAT ELSE HE KEPT IN THIS BUNKER .
+-all types are broken into 2 categories: reference or value
+ when you are looking at code, you need to be able to look at a type and determine what it is
+ _________			_____
+ reference			value
+	
+ class				struct
+ string				char
+ object				int (all primitives except for string and object actually)
+ most types are reference	simple data
+ **google reference vs value types-
+CRAZY SON OF A . . . CAN YOU EVEN MAKE ANYTHING OF THIS. -STALKER- ?
+. . . YOU GOT THAT LOOK IN YOUR EYE, -STALKER- . . .
+WHERE DO YOU THINK YOU ' RE GOIN, WE ' RE NOT DONE SEARCHING THIS PLA -
+. . .
+. . .*YOUR* *EYES* *ARE* *NOW* *SCARLET*
+. . . 
+. . .
+. . . 
+the trail continues into the cornfield, so you tighten your laces and continue trudging on
+a single sign marks the edge of the crop
+-the larger a value type, the more taxing it is on system performance-
+ a reference type with a value of 10 is not considered equal to another reference type with a calue of 10
+ a value type with a value of 10 is considered equal to another value type with a value of 10
+ this is a result of the value syntax-
+you settle your stained jacket sleeves around your arms and persist down the only path left
+the bonfire is warm, but your clothes manage to shield you from created intimacy
+the tracks are fresh, your prey may be near
+the bark is black, it crumbles in your hand when handled
+the measures grow frantic, your target knows his fate
+the mud is caked and solid, the rain has not shown itself for five days
+fives days on the road is not sustainable, you need rest
+rest will delay the inevitable, it is a fool's errand to attempt to stop your instict
+instinct alone has gotten you this far, it will carry you to the end of the plane and the bottom of hell
+hell is only a sleep away from your quarry...
+...
+. . . 
+-a dictionary in coding terms maps assigned values **google dictionary C#
+ value types are designed to be immutable
+ type checking is definitely worth reading about in the book-
+. . .
+. . .YOU FINALLY AWAKE , -SON- ?
+YOU WERE OUT FER NEARLY A WHOLE DAY !
+YOU SEEM HUNGRY, -SON-, WHY DON ' T YOU HAVE SOME SUPPER WITH ME ?
+I ' D BET YOU COULD USE A BITE OR TWO , IT LOOKS LIKE YOU HAVEN ' T EATEN IN A LONG TIME . . .
+YOU GOT THE *EYES* OF A HUNGRY DOG, -SON- . . . YOU BEST EAT . . .
+you are unable to shield yourself from the intimacy provided this time
+if you do not eat, you do not continue the hunt
+if you do not continue the hunt, a hunter may not live
+so says the -STALKER-'s creed
+your creed
+your path
+dog.
+go fetch.
+
+---MARCH 3---
+
+
