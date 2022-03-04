@@ -279,9 +279,40 @@ if you do not continue the hunt, a hunter may not live
 so says the -STALKER-'s creed
 your creed
 your path
-dog.
+old dog
 go fetch.
 
 ---MARCH 3---
+quiz 2 related endeavours
+simple calculations are usually done through properties, even if they are technically performing functions
+public int Area				example of a property
+  {
+    get { return _l * _w }
+  }
+METHODS DONT READ OR WRITE DATA
+a "validate" function would make more sense as a method
+REFERENCE TYPES ARE STORED ON THE "HEAP" --- VALUE TYPES ARE STORED ON THE "CALL STACK" (you already know what this is)
+identifiers may only start with letters or underscores, and may only contain alphanumeric values and underscores
+primitives are always lowercased (which is why DateTime is not a primitive)
+**you should definitely google the difference between/how to determine if something is a property or a value
+-= OH BOY NEW STUFF =-
+CONSTRUCTOR: it initializes the instance you just created - ctor = [access] [modifiers] T () { S }
+the holy quadrology: fields, properties, methods, constructors
+fields are initialized in an undefined order, so fields cannot depend on other fields
+YOU CANT FORCE YOUR USER TO SET A PROPERY'S VALUE (i.e. they should have a default value)
+CONSTRUCTORS CAN FORCE USERS TO PROVIDE NECCESARY DATA FOR COMPILE (enforces required data before creating an instance)
+if you don't declare a constructor, an auto-genereated "default constructor" will be called instead (so you dont need to create a default parameterless constructor for yourself)
+**google constructor chaining
+typically default constructor does init and other constructors call it
+OR you do the inverse i think
 
-
+INHERITANCE is being able to infer certain functionality of a type because it derives that from a base type
+BASE TYPE and DERIVED TYPE
+useful for creating different types that we want to behave the same/similar 
+looking for a IS-A relationship (a dog IS An animal)
+[access] [modifiers] class id [:T] { }
+the base type determines whether or not the derive types can/will change behavior
+the VIRTUAL modifier only has signifigance wit inheritance (allows implementation to change, but doesnt force derive types to change)
+OVERRIDE modifier
+CONSTRUCTORS AND FIELDS ARE NEVER INHERITED (and thus can never be virtual, only properties and methods)
+base types are always declared first (duh)

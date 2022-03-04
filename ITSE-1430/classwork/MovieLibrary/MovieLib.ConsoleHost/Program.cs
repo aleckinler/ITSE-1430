@@ -12,6 +12,9 @@ namespace MovieLib.ConsoleHost
         //Entry point
         static void Main ( string[] args )
         {
+            //_movies = new MovieDatabase();
+            //_movies.Name = "My Movies";
+
             //Block style declaration - all declared at the top of the function
             //On demand/inline declaration - cariables are declared as needed
             var done = false;
@@ -246,6 +249,7 @@ namespace MovieLib.ConsoleHost
         }
 
         static Movie movie;
+        static MemoryMovieDatabase _movies = new MemoryMovieDatabase();
 
         static void Display ( object data )
         {

@@ -126,5 +126,16 @@ namespace Demo
             hoursWorked = 10;
             intValue = hoursWorked;
         }
+
+        //public int Area { get; set; } //property
+
+        //public int Area2              //property
+        //{
+        //    get { return _length * _width; }
+        //}
+
+        //public bool Validate ()       //method
+
+        //Employee [] GetEmployee()     //method
     }
 }
