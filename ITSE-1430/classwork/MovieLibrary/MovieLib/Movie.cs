@@ -116,8 +116,8 @@ namespace MovieLib
                 return "rating is required";
 
             //special rule - no classic movies before 1940
-            if (IsClassic && ReleaseYear < 1940)
-                return "Release year must be at least 1940 to be a classic";
+            //if (IsClassic && ReleaseYear < 1940)
+            //    return "Release year must be at least 1940 to be a classic";
 
             return "";
         }
@@ -129,5 +129,10 @@ namespace MovieLib
         //}
         //
         //private int _id; (auto property generates a field for this, so it doesnt need to be a declared)
+
+        public override string ToString ()
+        {
+            return $"{Title} ({ReleaseYear})";
+        }
     }
 }
