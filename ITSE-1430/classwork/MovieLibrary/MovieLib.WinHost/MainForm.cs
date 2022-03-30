@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using MovieLib.Memory;
+
 namespace MovieLib.WinHost
 {
     public partial class MainForm : Form
@@ -17,17 +19,19 @@ namespace MovieLib.WinHost
             InitializeComponent();
         }
 
-        private void OnFileExit ( object sender, EventArgs e )
+        protected override void OnFormClosing ( FormClosingEventArgs e )
         {
-            //confirm exit
+            //Confirm exit
             DialogResult dr = MessageBox.Show(this, "Are you sure you want to quit?", "Quit",
                                               MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (dr == DialogResult.Yes)
-            {
-                //user clicked yes
-                Close();
-            };
+            if (dr != DialogResult.Yes)
+                e.Cancel = true;
+        }
+
+        private void OnFileExit ( object sender, EventArgs e )
+        {
+            Close();
         }
 
         private void OnHelpAbout ( object sender, EventArgs e )
@@ -39,22 +43,33 @@ namespace MovieLib.WinHost
         private void OnMovieAdd ( object sender, EventArgs e )
         {
             var dlg = new MovieForm();
-             if (dlg.ShowDialog(this) !=DialogResult.OK)
-                return;
 
-            //TODO: save the movie!
-            _movie = dlg.Movie;
-            UpdateUI();
+            //show modally, blocking call
+            do
+            {
+                if (dlg.ShowDialog(this) !=DialogResult.OK)
+                    return;
+
+                //TODO: save the movie!
+                var error = _movies.Add(dlg.Movie);
+                if (String.IsNullOrEmpty(error))
+                {
+                    UpdateUI();
+                    return;
+                };
+
+                MessageBox.Show(this, error, "Add Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } while (true);
         }
 
         private void UpdateUI ()
         {
             _lstMovies.Items.Clear();
-            if (_movie != null)
-            _lstMovies.Items.Add(_movie);
+
+            var movies = _movies.GetAll();
+            _lstMovies.Items.AddRange(movies);
         }
 
-        private Movie _movie;
 
         private void OnMovieEdit ( object sender, EventArgs e )
         {
@@ -87,7 +102,7 @@ namespace MovieLib.WinHost
             if (MessageBox.Show(this, $"Are you sure you want to delete {movie.Title}?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
 
                 return;
-
+            
             _movie = null;
             UpdateUI();
         }
@@ -96,5 +111,8 @@ namespace MovieLib.WinHost
         {
             return _lstMovies.SelectedItem as Movie;
         }
+
+        private Movie _movie;
+        private readonly MemoryMovieDatabase _movies = new MemoryMovieDatabase();
     }
 }

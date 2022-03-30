@@ -63,17 +63,4 @@ namespace MovieLib
 
         protected void Foo () { } //protected means accessible to types and derived types, its private to everything else (also this is a dummy for demonstration purposes if you couldnt tell but like its obvious)
     }
-
-    public class MemoryMovieDatabase : MovieDatabase //this is type inheritance
-    {
-        public MemoryMovieDatabase () : base("Memory Movies") //when you have a derived type, you are actually dealing with objects within objects
-        {
-
-        }
-
-        public override void Add ( Movie movie )
-        {
-            base.Add(movie);
-        }
-    }
 }

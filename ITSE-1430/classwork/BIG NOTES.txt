@@ -316,3 +316,15 @@ the VIRTUAL modifier only has signifigance wit inheritance (allows implementatio
 OVERRIDE modifier
 CONSTRUCTORS AND FIELDS ARE NEVER INHERITED (and thus can never be virtual, only properties and methods)
 base types are always declared first (duh)
+
+---MARCH 24---
+an EVENT a notification to interested parties that something of importance is happening
+LOADING is considered to be an EVENT
+EVENTS are designed for other people, not really the form itself (the instance doesnt really react to its own load event, but other contigent parties may)
+i.e. Load event / OnLoad method (prof recommends u override the method)
+load events are GREAT for prompting last-minute initialization code before rendering a window (not constructors)
+(worth noting constructors are already being called with the new keyword)
+ALSO THIS IS KINDA SPECIFIC TO WINDOWS FORMS
+When a window is closed (like with the Close() method or ALT + F4) the FormClosing and FormClosed events are called
+FormClosing is useful for confirming if a user wants to quit an application or save changes (can also cancel a form being closed, this seems rather malicious)
+FormClosed is used after the form is closed (duh) and is useful for resources to be cleaned up after the fact
