@@ -1,0 +1,12 @@
+C:\Users\Winged Star\source\repos\ITSE-1430\labs\Lab3\AlecKinler.AdventureGame\bin\Debug\net6.0\AlecKinler.AdventureGame.deps.json
+C:\Users\Winged Star\source\repos\ITSE-1430\labs\Lab3\AlecKinler.AdventureGame\bin\Debug\net6.0\AlecKinler.AdventureGame.dll
+C:\Users\Winged Star\source\repos\ITSE-1430\labs\Lab3\AlecKinler.AdventureGame\bin\Debug\net6.0\AlecKinler.AdventureGame.pdb
+C:\Users\Winged Star\source\repos\ITSE-1430\labs\Lab3\AlecKinler.AdventureGame\obj\Debug\net6.0\AlecKinler.AdventureGame.csproj.AssemblyReference.cache
+C:\Users\Winged Star\source\repos\ITSE-1430\labs\Lab3\AlecKinler.AdventureGame\obj\Debug\net6.0\AlecKinler.AdventureGame.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Winged Star\source\repos\ITSE-1430\labs\Lab3\AlecKinler.AdventureGame\obj\Debug\net6.0\AlecKinler.AdventureGame.AssemblyInfoInputs.cache
+C:\Users\Winged Star\source\repos\ITSE-1430\labs\Lab3\AlecKinler.AdventureGame\obj\Debug\net6.0\AlecKinler.AdventureGame.AssemblyInfo.cs
+C:\Users\Winged Star\source\repos\ITSE-1430\labs\Lab3\AlecKinler.AdventureGame\obj\Debug\net6.0\AlecKinler.AdventureGame.csproj.CoreCompileInputs.cache
+C:\Users\Winged Star\source\repos\ITSE-1430\labs\Lab3\AlecKinler.AdventureGame\obj\Debug\net6.0\AlecKinler.AdventureGame.dll
+C:\Users\Winged Star\source\repos\ITSE-1430\labs\Lab3\AlecKinler.AdventureGame\obj\Debug\net6.0\refint\AlecKinler.AdventureGame.dll
+C:\Users\Winged Star\source\repos\ITSE-1430\labs\Lab3\AlecKinler.AdventureGame\obj\Debug\net6.0\AlecKinler.AdventureGame.pdb
+C:\Users\Winged Star\source\repos\ITSE-1430\labs\Lab3\AlecKinler.AdventureGame\obj\Debug\net6.0\ref\AlecKinler.AdventureGame.dll
