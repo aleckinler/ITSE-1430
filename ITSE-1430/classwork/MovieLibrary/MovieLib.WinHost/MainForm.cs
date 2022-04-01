@@ -19,6 +19,22 @@ namespace MovieLib.WinHost
             InitializeComponent();
         }
 
+        protected override void OnLoad ( EventArgs e )
+        {
+            base.OnLoad(e);
+
+            if (_movies.GetAll().Length == 0)
+            {
+                if (MessageBox.Show(this, "Do you want to seed the database?", "Seed", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    //seed
+                    var seed = new SeedDatabase();
+                    seed.Seed(_movies);
+                    UpdateUI();
+                }
+            }
+        }
+
         protected override void OnFormClosing ( FormClosingEventArgs e )
         {
             //Confirm exit
@@ -54,6 +70,7 @@ namespace MovieLib.WinHost
                 var error = _movies.Add(dlg.Movie);
                 if (String.IsNullOrEmpty(error))
                 {
+                    //dlg.Movie.Title = "Star Wars";
                     UpdateUI();
                     return;
                 };
@@ -67,15 +84,23 @@ namespace MovieLib.WinHost
             _lstMovies.Items.Clear();
 
             var movies = _movies.GetAll();
+            BreakMovies(movies);
+
             _lstMovies.Items.AddRange(movies);
         }
 
+        private void BreakMovies ( Movie[] movies )
+        {
+            if (movies.Length > 0)
+            {
+                var firstMovie = movies[0];
+
+              //firstMovie.Title = "Star Wars";
+            }
+        }
 
         private void OnMovieEdit ( object sender, EventArgs e )
         {
-            var menuItem = sender as ToolStripMenuItem;
-            //sender == _miMovieEdit;
-
             //getting selected movie
             var movie = GetSelectedMovie();
             if (movie == null)
@@ -84,13 +109,21 @@ namespace MovieLib.WinHost
             var dlg = new MovieForm();
             dlg.Movie = movie;
 
-            //show modally - blocking call
-            if (dlg.ShowDialog(this) !=DialogResult.OK)
-                return;
+            do
+            {
+                if (dlg.ShowDialog(this) !=DialogResult.OK)
+                    return;
 
-            //TODO: update movie!
-            _movie = dlg.Movie;
-            UpdateUI();
+                //TODO: update movie!
+                var error = _movies.Update(movie.Id, dlg.Movie);
+                if (String.IsNullOrEmpty(error))
+                {
+                    UpdateUI();
+                    return;
+                };
+
+                MessageBox.Show(this, error, "Update Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } while (true);
         }
 
         private void OnMovieDelete ( object sender, EventArgs e ) //EventArgs could also be a derived type (remember inheritance)
@@ -103,7 +136,7 @@ namespace MovieLib.WinHost
 
                 return;
             
-            _movie = null;
+            _movies.Delete(movie);
             UpdateUI();
         }
 
@@ -114,5 +147,10 @@ namespace MovieLib.WinHost
 
         private Movie _movie;
         private readonly MemoryMovieDatabase _movies = new MemoryMovieDatabase();
+
+        private void _lstMovies_SelectedIndexChanged ( object sender, EventArgs e )
+        {
+
+        }
     }
 }

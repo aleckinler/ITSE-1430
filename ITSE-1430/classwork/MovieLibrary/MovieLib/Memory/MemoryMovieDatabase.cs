@@ -23,7 +23,8 @@ namespace MovieLib.Memory
                 return "Movie must be unique";
 
             //add (adds and item to your list, duh)
-            _movies.Add(movie);
+            movie.Id = _id++;
+            _movies.Add(movie.Copy());
             return "";
         }
 
@@ -38,21 +39,72 @@ namespace MovieLib.Memory
         }
 
         public void Delete ( Movie movie )
-        { }
-
-        public Movie Get ()
         {
+            //find by movie.Id;
+            foreach (var item in _movies)
+            {
+                if (item.Id == movie.Id)
+                {
+                    _movies.Remove(item);
+                    return;
+                };
+            };
+        }
+
+        public Movie Get ( int id)
+        {
+            return FindById(id)?.Copy();
+        }
+
+        public Movie FindById ( int id )
+        {
+            foreach (var item in _movies)
+            {
+                if (item.Id == id)
+                    return item;
+            };
+
             return null;
         }
 
-        public Movie[] GetAll ()
+        public Movie[] GetAll()
         {
-            return _movies.ToArray();
+            //return _movies.ToArray();
+            var items = new Movie[_movies.Count];
+            var index = 0;
+            foreach (var movie in _movies)
+                items[index++] = movie.Copy();
+
+            return items;
         }
 
-        public void Update ( Movie movie )
-        { }
+
+        public string Update ( int id, Movie movie )
+        {
+            if (id <= 0)
+                return "Id must be greater than or equal to 0";
+            if (movie == null)
+                return "Movie cannot be null";
+            var error = movie.Validate();
+            if (!String.IsNullOrEmpty(error))
+                return error;
+
+            //title must be unique or same movie
+            var existing = FindByName(movie.Title);
+            if (existing != null && existing.Id != id)
+                return "Movie must be unique";
+
+            //make sure movie already exists
+            existing = FindById(id);
+            if (existing == null)
+                return "Movie does not exist";
+
+            //add (adds and item to your list, duh)
+            movie.CopyFrom(existing);
+            return "";
+        }
 
         private readonly List<Movie> _movies = new List<Movie>();
+        private int _id = 1;
     }
 }

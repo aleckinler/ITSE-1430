@@ -268,19 +268,6 @@ hell is only a sleep away from your quarry...
  value types are designed to be immutable
  type checking is definitely worth reading about in the book-
 . . .
-. . .YOU FINALLY AWAKE , -SON- ?
-YOU WERE OUT FER NEARLY A WHOLE DAY !
-YOU SEEM HUNGRY, -SON-, WHY DON ' T YOU HAVE SOME SUPPER WITH ME ?
-I ' D BET YOU COULD USE A BITE OR TWO , IT LOOKS LIKE YOU HAVEN ' T EATEN IN A LONG TIME . . .
-YOU GOT THE *EYES* OF A HUNGRY DOG, -SON- . . . YOU BEST EAT . . .
-you are unable to shield yourself from the intimacy provided this time
-if you do not eat, you do not continue the hunt
-if you do not continue the hunt, a hunter may not live
-so says the -STALKER-'s creed
-your creed
-your path
-old dog
-go fetch.
 
 ---MARCH 3---
 quiz 2 related endeavours
@@ -328,3 +315,34 @@ ALSO THIS IS KINDA SPECIFIC TO WINDOWS FORMS
 When a window is closed (like with the Close() method or ALT + F4) the FormClosing and FormClosed events are called
 FormClosing is useful for confirming if a user wants to quit an application or save changes (can also cancel a form being closed, this seems rather malicious)
 FormClosed is used after the form is closed (duh) and is useful for resources to be cleaned up after the fact
+
+---8:14 PM 3/29/2022---
+ARRAYS but like in greater depth
+arrays are a type actually, and c# does not allow for closed arrays
+ALWAYS REFERENCE TYPES
+
+new int[ size(must be integral) ]
+
+Array.Copy will clone and array (since its a reference type you need this function)
+ex. grades[4] (with 0 as base)
+CANNOT BE CONST. thus cannot be locked down (private)
+
+Arrays can have a size of 0 (ex. int[ ] empty=new)
+foreach (var grade in grades )
+	CwL(grade);
+Another example (this is kinda spaghetti, it wouldnt compile, but it gets the point across)
+
+int[ ] arr
+
+void Add (int value)
+{
+arr = Resize(arr, arr.Length + 1)
+arr[arr.Length-1] = value;
+}
+
+int Get (int index)
+{
+get arr(index);
+}
+
+**google c foreach

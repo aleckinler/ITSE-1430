@@ -122,7 +122,7 @@ namespace MovieLib
             return "";
         }
 
-        public int Id { get; private set; } //auto-compile syntax
+        public int Id { get; set; } //auto-compile syntax
         //{
         //    get { return _id; }
         //    private set { _id = value; } //mixed accessability, only getter OR setter (must be more restrictive than property)
@@ -133,6 +133,44 @@ namespace MovieLib
         public override string ToString ()
         {
             return $"{Title} ({ReleaseYear})";
+        }
+
+        public Movie Copy ()
+        {
+            //var item = new Movie();
+            //item.Id = Id;
+            //item.Title = Title;
+            //item.Duration = Duration;
+            //item.Description = Description;
+            //item.ReleaseYear = ReleaseYear;
+            //item.Genre = Genre;
+            //item.Rating = Rating;
+            //item.IsClassic = IsClassic;
+
+            //return item;
+
+            //object initializer syntax **ONLY WORKS WITH new
+            return new Movie() { //step 1: remove the semicolon that would normally end this statement
+                        Id = Id,     //step 2: replace other semicolons with commas
+                        Title = Title, //step 3: remove instance. names (also indent for readability)
+                        Duration = Duration,
+                        Description = Description,
+                        ReleaseYear = ReleaseYear,
+                        Genre = Genre,
+                        Rating = Rating,
+                        IsClassic = IsClassic,
+            };
+        }
+
+        public void CopyFrom ( Movie source )
+        {
+            source.Title = Title;
+            source.Duration = Duration;
+            source.Description = Description;
+            source.ReleaseYear = ReleaseYear;
+            source.Genre = Genre;
+            source.Rating = Rating;
+            source.IsClassic = IsClassic;
         }
     }
 }
