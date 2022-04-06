@@ -6,16 +6,20 @@ using System.Threading.Tasks;
 
 namespace MovieLib.Memory
 {
-    public class MemoryMovieDatabase
+    public class MemoryMovieDatabase : IMovieDatabase
     {
         public string Add ( Movie movie )
         {
             //TODO: validate
             if (movie == null)
                 return "Movie cannot be null";
-            var error = movie.Validate();
-            if (!String.IsNullOrEmpty(error))
+
+            //TODO: fix validation message
+            if (!new ObjectValidator().TryValidateObject(movie, out var errors))
                 return "Movie is invalid";
+            //var error = movie.Validate();
+            //if (!String.IsNullOrEmpty(error))
+            //    return "Movie is invalid";
 
             //title must be unique
             var existing = FindByName(movie.Title);
@@ -51,10 +55,13 @@ namespace MovieLib.Memory
             };
         }
 
-        public Movie Get ( int id)
+        public Movie Get ( int id )
         {
             return FindById(id)?.Copy();
         }
+
+        //iterators - implementation of IEnumerable<T>
+        //
 
         public Movie FindById ( int id )
         {
@@ -67,15 +74,20 @@ namespace MovieLib.Memory
             return null;
         }
 
-        public Movie[] GetAll()
+        public IEnumerable<Movie> GetAll ()
         {
             //return _movies.ToArray();
-            var items = new Movie[_movies.Count];
-            var index = 0;
+            //var items = new Movie[_movies.Count];
+            //var index = 0;
             foreach (var movie in _movies)
-                items[index++] = movie.Copy();
+            {
+                System.Diagnostics.Debug.WriteLine($"Returning {movie.Title}");
 
-            return items;
+                //items[index++] = movie.Copy();
+                yield return movie.Copy();
+            };
+
+            //return items;
         }
 
 
@@ -85,9 +97,11 @@ namespace MovieLib.Memory
                 return "Id must be greater than or equal to 0";
             if (movie == null)
                 return "Movie cannot be null";
-            var error = movie.Validate();
-            if (!String.IsNullOrEmpty(error))
-                return error;
+
+
+            //var error = movie.Validate();
+            //if (!String.IsNullOrEmpty(error))
+            //    return error;
 
             //title must be unique or same movie
             var existing = FindByName(movie.Title);

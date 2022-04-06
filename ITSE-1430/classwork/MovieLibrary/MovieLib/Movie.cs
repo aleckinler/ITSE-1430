@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace MovieLib
 {
@@ -7,7 +9,7 @@ namespace MovieLib
     //   Default accessibility: internal for a class, private for a class member
 
     /// <summary>Represents a movie.</summary>
-    public class Movie
+    public class Movie : IValidatableObject //in c# you are limited to one base type (no support for multiple inheritance)
     {
         //Access modifiers
         //  public - everyone
@@ -96,31 +98,32 @@ namespace MovieLib
         /// validates the instance.
         /// </summary>
         /// <returns>returns error message if any or empty string otherwise.</returns>
-        public string Validate (/* Movie this */) //this cant be a parameter cuz its actually a keyword
-        {
-            var now = DateTime.Now; //this violates syntax rules as it is a property with a non-deterministic value, so it would need to be cached, which a property should not be
-
-            var title = ""; //this local variable can do not harm because _title is specified as a field, so theres no conflict
-            //title is required
-            if (String.IsNullOrEmpty(_title))
-                return "Title is required";
-
-            if (Duration < 0)
-            //compiler writes this as this.duration
-                return "Duration must be at least 0";
-
-            if (ReleaseYear < MinimumReleaseYear)
-                return "Release year must be at least 1900";
-
-            if (String.IsNullOrEmpty(Rating))
-                return "rating is required";
-
-            //special rule - no classic movies before 1940
-            //if (IsClassic && ReleaseYear < 1940)
-            //    return "Release year must be at least 1940 to be a classic";
-
-            return "";
-        }
+        
+        //public string Validate (/* Movie this */) //this cant be a parameter cuz its actually a keyword
+        //{
+        //    var now = DateTime.Now; //this violates syntax rules as it is a property with a non-deterministic value, so it would need to be cached, which a property should not be
+        //
+        //    var title = ""; //this local variable can do not harm because _title is specified as a field, so theres no conflict
+        //    //title is required
+        //    if (String.IsNullOrEmpty(_title))
+        //        return "Title is required";
+        //
+        //    if (Duration < 0)
+        //    //compiler writes this as this.duration
+        //        return "Duration must be at least 0";
+        //
+        //    if (ReleaseYear < MinimumReleaseYear)
+        //        return "Release year must be at least 1900";
+        //
+        //    if (String.IsNullOrEmpty(Rating))
+        //        return "rating is required";
+        //
+        //    //special rule - no classic movies before 1940
+        //    //if (IsClassic && ReleaseYear < 1940)
+        //    //    return "Release year must be at least 1940 to be a classic";
+        //
+        //    return "";
+        //}
 
         public int Id { get; set; } //auto-compile syntax
         //{
@@ -171,6 +174,23 @@ namespace MovieLib
             source.Genre = Genre;
             source.Rating = Rating;
             source.IsClassic = IsClassic;
+        }
+
+        public IEnumerable<ValidationResult> Validate ( ValidationContext validationContext )
+        {
+            //title is required
+            if (String.IsNullOrEmpty(_title))
+                yield return new ValidationResult("Title is required", new[] { nameof(Title) });
+
+            if (Duration < 0)
+                //compiler writes this as this.duration
+                yield return new ValidationResult("Duration must be at least 0", new[] { nameof(Duration) });
+
+            if (ReleaseYear < MinimumReleaseYear)
+                yield return new ValidationResult("Release year must be at least 1900", new[] { nameof(ReleaseYear) });
+
+            if (String.IsNullOrEmpty(Rating))
+                yield return new ValidationResult("rating is required", new[] { nameof(Rating) });
         }
     }
 }

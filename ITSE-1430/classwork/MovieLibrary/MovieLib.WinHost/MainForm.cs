@@ -23,7 +23,7 @@ namespace MovieLib.WinHost
         {
             base.OnLoad(e);
 
-            if (_movies.GetAll().Length == 0)
+            if (!_movies.GetAll().Any())
             {
                 if (MessageBox.Show(this, "Do you want to seed the database?", "Seed", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
@@ -84,20 +84,21 @@ namespace MovieLib.WinHost
             _lstMovies.Items.Clear();
 
             var movies = _movies.GetAll();
-            BreakMovies(movies);
+            //BreakMovies(movies);
 
-            _lstMovies.Items.AddRange(movies);
+            foreach (var movie in movies)
+                _lstMovies.Items.Add(movie);
         }
 
-        private void BreakMovies ( Movie[] movies )
-        {
-            if (movies.Length > 0)
-            {
-                var firstMovie = movies[0];
-
-              //firstMovie.Title = "Star Wars";
-            }
-        }
+        //private void BreakMovies ( IEnumerable<Movie> movies )
+        //{
+        //    if (movies.Any())
+        //    {
+        //        var firstMovie = movies[0];
+        //
+        //      firstMovie.Title = "Star Wars";
+        //    }
+        //}
 
         private void OnMovieEdit ( object sender, EventArgs e )
         {
@@ -146,11 +147,11 @@ namespace MovieLib.WinHost
         }
 
         private Movie _movie;
-        private readonly MemoryMovieDatabase _movies = new MemoryMovieDatabase();
+        private readonly IMovieDatabase _movies = new MemoryMovieDatabase();
 
         private void _lstMovies_SelectedIndexChanged ( object sender, EventArgs e )
         {
-
+            //this does nothing but i dont wanna screw up anything by deleting it
         }
     }
 }
