@@ -4,12 +4,17 @@ using MovieLib.Memory;
 
 namespace MovieLib
 {
+    //extension methods
+    //  in a static public/internal class
+    //  must be a static method
+    //  first parameter must be preceded by "this"
+
     /// <summary>
     /// seeds a movie database
     /// </summary>
-    public class SeedDatabase
+    public static class SeedDatabase
     {
-        public void Seed ( IMovieDatabase database )
+        public static void Seed ( this IMovieDatabase database )
         {
             database.Add(new Movie() {
                 Title = "Dune",
@@ -36,7 +41,7 @@ namespace MovieLib
                 ReleaseYear = 2017,
                 Duration = 163,
                 Rating = "R",
-                Description = "Robot loses robot wife, consoled by man who lost robot wife",
+                Description = "Robot gets robot wife, but not for long",
             });
         }
     }

@@ -224,6 +224,7 @@ namespace MovieLib.WinHost
             this.MaximumSize = new System.Drawing.Size(800, 800);
             this.Name = "MovieForm";
             this.Text = "Add Movie";
+            this.Load += new System.EventHandler(this.MovieForm_Load);
             this.Click += new System.EventHandler(this._ddlRating_SelectedIndexChanged);
             ((System.ComponentModel.ISupportInitialize)(this._errors)).EndInit();
             this.ResumeLayout(false);

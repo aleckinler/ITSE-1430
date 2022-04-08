@@ -19,20 +19,26 @@ namespace MovieLib.WinHost
             InitializeComponent();
         }
 
+        //extension methods
+        //extended a type with a new method
+        //works with any type
+        //
         protected override void OnLoad ( EventArgs e )
         {
             base.OnLoad(e);
 
-            if (!_movies.GetAll().Any())
+            //If database is empty
+            IEnumerable<Movie> items = _movies.GetAll();
+            if (!items.Any())
             {
                 if (MessageBox.Show(this, "Do you want to seed the database?", "Seed", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     //seed
-                    var seed = new SeedDatabase();
-                    seed.Seed(_movies);
+                    //var seed = new SeedDatabase(); - unneeded due to static optimizations
+                    _movies.Seed();
                     UpdateUI();
-                }
-            }
+                };
+            };
         }
 
         protected override void OnFormClosing ( FormClosingEventArgs e )
@@ -137,7 +143,7 @@ namespace MovieLib.WinHost
 
                 return;
             
-            _movies.Delete(movie);
+            _movies.Delete(movie.Id);
             UpdateUI();
         }
 

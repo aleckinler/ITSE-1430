@@ -6,61 +6,98 @@ using System.Threading.Tasks;
 
 namespace MovieLib
 {
-    public class MovieDatabase
+    public abstract class MovieDatabase : IMovieDatabase //if any methods within a class are abstract, then the whole class needs to be declared as abstract (this is a c# thing apparently)
     {
-        public MovieDatabase () : this("My Movies") //this is constructor chaining (one constructor calling another)
+        public string Add ( Movie movie )
         {
-            //always do minimal initialization of instance, IF ANY
-            //don't initialize fields in here - use field initializers
-            //unless the field depends on other fields or relies on data available after initialization
+            //TODO: validate
+            if (movie == null)
+                return "Movie cannot be null";
 
-            //replicate init code
-            //Initialize();
+            //TODO: fix validation message
+            if (!ObjectValidator.TryValidateObject(movie, out var errors))
+                return "Movie is invalid";
+            //var error = movie.Validate();
+            //if (!String.IsNullOrEmpty(error))
+            //    return "Movie is invalid";
+
+            //title must be unique
+            var existing = FindByName(movie.Title);
+            if (existing != null)
+                return "Movie must be unique";
+
+            //add (adds and item to your list, duh)
+            var newMovie = AddCore(movie);
+            movie.Id = newMovie.Id;
+            return "";
         }
 
-        //bad init approach
-        //private void Initialize();
-        //{
-        //     _id = 1;
-        //}
+        protected abstract Movie AddCore ( Movie movie );
 
-        public MovieDatabase ( string name )
+        public string Delete ( int id )
         {
-            //Initialize();
-            _id = 1;
-            Name = name;
-        }
-        //private string _name;
-        private int _id;
+            if (id <= 0)
+                return "ID must be > 0";
 
-        public string Name { get; set; }
-
-        //virtual means derived types can be overridden 
-        public virtual void Add ( Movie movie )
-        {
-
+            //find by movie.Id;
+            DeleteCore(id);
+            return "";
         }
 
-        public void Delete ( Movie movie )
-        {
+        protected abstract void DeleteCore ( int id );
 
+        public Movie Get ( int id )
+        {
+            //TODO: Validate
+            if (id <= 0)
+                return null;
+
+            return GetCore(id);
         }
 
-        public Movie Search ( string name )
+        protected abstract Movie GetCore ( int id );
+
+        //iterators - implementation of IEnumerable<T>
+        //
+
+        public IEnumerable<Movie> GetAll ()
         {
-            return null;
+            //TODO: Handle null
+            return GetAllCore();
         }
 
-        public Movie Get ()
+        protected abstract IEnumerable<Movie> GetAllCore ();
+
+        public string Update ( int id, Movie movie )
         {
-            return null;
+            if (id <= 0)
+                return "Id must be greater than or equal to 0";
+            if (movie == null)
+                return "Movie cannot be null";
+
+            if (!ObjectValidator.TryValidateObject(movie, out var errors))
+                return "Movie is invalid";
+            //var error = movie.Validate();
+            //if (!String.IsNullOrEmpty(error))
+            //    return error;
+
+            //title must be unique or same movie
+            var existing = FindByName(movie.Title);
+            if (existing != null && existing.Id != id)
+                return "Movie must be unique";
+
+            //make sure movie already exists
+            existing = GetCore(id);
+            if (existing == null)
+                return "Movie does not exist";
+
+            //add (adds and item to your list, duh)
+            UpdateCore(id, movie);
+            return "";
         }
 
-        public void Update ( Movie movie )
-        {
+        protected abstract void UpdateCore ( int id, Movie movie );
 
-        }
-
-        protected void Foo () { } //protected means accessible to types and derived types, its private to everything else (also this is a dummy for demonstration purposes if you couldnt tell but like its obvious)
+        protected abstract Movie FindByName ( string name );
     }
 }

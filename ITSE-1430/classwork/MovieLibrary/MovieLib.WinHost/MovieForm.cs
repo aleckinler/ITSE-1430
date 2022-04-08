@@ -65,7 +65,7 @@ namespace MovieLib.WinHost
             movie.ReleaseYear = ReadAsInt32(_txtReleaseYear, -1);
 
             //validate; close if valid
-            if (!new ObjectValidator().TryValidateObject(movie, out var errors))
+            if (ObjectValidator.TryValidateObject(movie, out var errors))
             {
                 //valid
                 Movie = movie;
@@ -133,6 +133,11 @@ namespace MovieLib.WinHost
                 e.Cancel = true;
             } else
                 _errors.SetError(control, "");
+        }
+
+        private void MovieForm_Load ( object sender, EventArgs e )
+        {
+
         }
     }
 }

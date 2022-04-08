@@ -346,3 +346,52 @@ get arr(index);
 }
 
 **google c foreach
+
+---7:43 PM 4/5/2022---
+interfaces always start with "I" (ex. IEnumerable) <-- also probably the most common interface you'll work with
+interfaces decouple your code (why theyre useful) code being coupled becomes a larger problem as your code becomes larger
+decoupling is removing the implementation details from something i think
+IMPLEMENTATION and USAGE are the two things interfaces are concerned with 
+USAGE is what the interface accomplishes (ex. logging into windows)
+IMPLEMENTATION is how it goes about doing this task (ex. password vs fingerprint scanner vs PIN)
+fields are not inherited in interfaces, nor are constructors
+ONLY METHODS, PROPERTIES, and EVENTS are inherited
+interfaces define functionality, so they are named after that functionality(ex. enumerable is a trait)
+IEnumerable<T> is READ-ONLY  (you can only enumerate the items)
+yield keyword - only works inside of methods that implement IEnumerable<T>
+
+IList<T>
+ICollection<T>
+IComparer<T> and IComparable<T> (can compare if things are equal, ignoring equality yknow what i mean)
+IClonable
+IEqualityComparer<T> (you define what equality means) 
+
+IF YOU IMPLEMENT AN INTERFACE, YOU MUST IMPLEMENT ALL OF ITS FUNCTIONALITY
+**google collection initializer syntax
+
+---7:41 PM 4/7/2022---
+ABSTRACTION (not like the art thing but like the programming thing)
+useful as a middleground between tightly coupled code and interfaces (which are loosely coupled)
+abstraction is actually a form of inheritance
+
+STATICS do not require an instance of the type
+(its a glorified global)
+static methods can handle null without crashing, so thats a common utility for them
+static methods ARE useful, but they SHOULD NOT be missused
+a type may have a list of static and non static members
+statics CANNOT use the THIS keyword, and you can only call other static members on the same type
+a static member MUST be called on the type it was declared on (NO INHERITANCE)
+this means you cant call static members using an instance
+STATIC CLASSES CONTAIN ONLY STATIC MEMBERS
+
+EXTENSION METHODS!!! allow you to take any type (doesnt matter what the type is) and add methods to it
+(ex. var.Any(); )
+great for adding universal functionality without continuously growing your hierarchy
+basically just really fancy static methods, so still subject to the same restrictions
+ToArray() and ToList() are extension methods (woah holy poopoo)
+Other notable extension methods include:
+FirstOrDefault() and LastOrDefault(); (theres also First() and Last() but dont use them)
+Single() and SingleOrDefault(); (also super fringe dont use) why are we writing these down
+OfType<T>()
+Cast<T>()	these two are part of IEnumerable (not to be confused with IEnumerable<T>)
+equivalent to a c style cast, generally speaking not very useful unless you know you have a type to cast

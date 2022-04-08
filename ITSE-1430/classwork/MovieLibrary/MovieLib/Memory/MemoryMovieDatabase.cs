@@ -6,33 +6,18 @@ using System.Threading.Tasks;
 
 namespace MovieLib.Memory
 {
-    public class MemoryMovieDatabase : IMovieDatabase
+    public class MemoryMovieDatabase : MovieDatabase
     {
-        public string Add ( Movie movie )
+        protected override Movie AddCore ( Movie movie )
         {
-            //TODO: validate
-            if (movie == null)
-                return "Movie cannot be null";
-
-            //TODO: fix validation message
-            if (!new ObjectValidator().TryValidateObject(movie, out var errors))
-                return "Movie is invalid";
-            //var error = movie.Validate();
-            //if (!String.IsNullOrEmpty(error))
-            //    return "Movie is invalid";
-
-            //title must be unique
-            var existing = FindByName(movie.Title);
-            if (existing != null)
-                return "Movie must be unique";
-
             //add (adds and item to your list, duh)
+            
             movie.Id = _id++;
             _movies.Add(movie.Copy());
-            return "";
+            return movie;
         }
 
-        private Movie FindByName ( string name )
+        protected override Movie FindByName ( string name )
         {
             //foreach rules: LOOP VARIANT is READONLY - 
             foreach (var movie in _movies)
@@ -42,12 +27,12 @@ namespace MovieLib.Memory
             return null;
         }
 
-        public void Delete ( Movie movie )
+        protected override void DeleteCore ( int id )
         {
-            //find by movie.Id;
+            //Find by movie.Id;
             foreach (var item in _movies)
             {
-                if (item.Id == movie.Id)
+                if (item.Id == id)
                 {
                     _movies.Remove(item);
                     return;
@@ -55,7 +40,7 @@ namespace MovieLib.Memory
             };
         }
 
-        public Movie Get ( int id )
+        protected override Movie GetCore ( int id )
         {
             return FindById(id)?.Copy();
         }
@@ -74,7 +59,7 @@ namespace MovieLib.Memory
             return null;
         }
 
-        public IEnumerable<Movie> GetAll ()
+        protected override IEnumerable<Movie> GetAllCore ()
         {
             //return _movies.ToArray();
             //var items = new Movie[_movies.Count];
@@ -91,31 +76,15 @@ namespace MovieLib.Memory
         }
 
 
-        public string Update ( int id, Movie movie )
+        protected override void UpdateCore ( int id, Movie movie )
         {
-            if (id <= 0)
-                return "Id must be greater than or equal to 0";
-            if (movie == null)
-                return "Movie cannot be null";
-
-
             //var error = movie.Validate();
             //if (!String.IsNullOrEmpty(error))
             //    return error;
 
             //title must be unique or same movie
-            var existing = FindByName(movie.Title);
-            if (existing != null && existing.Id != id)
-                return "Movie must be unique";
-
-            //make sure movie already exists
-            existing = FindById(id);
-            if (existing == null)
-                return "Movie does not exist";
-
-            //add (adds and item to your list, duh)
-            movie.CopyFrom(existing);
-            return "";
+            var existing = GetCore(id);
+            existing.CopyFrom(movie);
         }
 
         private readonly List<Movie> _movies = new List<Movie>();
