@@ -373,6 +373,7 @@ IF YOU IMPLEMENT AN INTERFACE, YOU MUST IMPLEMENT ALL OF ITS FUNCTIONALITY
 ABSTRACTION (not like the art thing but like the programming thing)
 useful as a middleground between tightly coupled code and interfaces (which are loosely coupled)
 abstraction is actually a form of inheritance
+an abstract class has at least one member that is declared, but has no actual implementation
 
 STATICS do not require an instance of the type
 (its a glorified global)
@@ -392,6 +393,43 @@ ToArray() and ToList() are extension methods (woah holy poopoo)
 Other notable extension methods include:
 FirstOrDefault() and LastOrDefault(); (theres also First() and Last() but dont use them)
 Single() and SingleOrDefault(); (also super fringe dont use) why are we writing these down
-OfType<T>()
+OfType<T>() <-actually useful
 Cast<T>()	these two are part of IEnumerable (not to be confused with IEnumerable<T>)
 equivalent to a c style cast, generally speaking not very useful unless you know you have a type to cast
+
+
+---7:41 PM 4/12/2022---
+ENUMERATING
+foreach (var type in _types)
+LINQs - Language Integrated Natural Query
+has a standardized what(data)
+		   where(come from?)
+		   when(predicate)
+		   how(group/order)
+ultimately just extension methods
+  select   from      where     orderBy
+<columns> <table> <conditions> <order>
+Select()  IEnumerable<T> Where() OrderBy()
+
+Function Object
+.net name is delegate (but prof like functor since its language agnostic)
++=OnMyClick
+decouple your code from the actual code you are calling
+lets you store a method in a variable pmuch, so you can call it whatever u want
+
+where(  predicate )
+{
+	foreach (var item in items)
+	predicate(item) ---> bool
+
+Func<Movie, bool> func is a generic type, always returns the last parameter as the return type
+Action<T> takes a method that returns void and has a parameter of type <T>
+
+anonymous method (lambda) a method that has no name, thus you cannot call it directly
+kinda like a temporary variable
+** => lambda expression (consider googling this)
+LAMBDA SYNTAX
+( arguments ) => ( statements )
+(T id, T id2)     id == id2
+(id, id2) <- more often thatn not, compiler will infer types (parens required with 0 or MORE THAN 1 parameter)
+IF YOU USE STATEMENT SYNTAX FOR MORE THAN ONE STATEMENT, YOU NEED TO WRITE THE RETURN STATEMENT
