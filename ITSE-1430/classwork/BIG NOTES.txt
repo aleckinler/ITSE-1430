@@ -433,3 +433,25 @@ LAMBDA SYNTAX
 (T id, T id2)     id == id2
 (id, id2) <- more often thatn not, compiler will infer types (parens required with 0 or MORE THAN 1 parameter)
 IF YOU USE STATEMENT SYNTAX FOR MORE THAN ONE STATEMENT, YOU NEED TO WRITE THE RETURN STATEMENT
+
+---7:36 PM 4/14/2022---
+
+Func<planet, bool>
+planets.where( p => p.MoonCount >= 2);
+
+the Select method is your transform
+BRO YOU NEED TO READ ABOUT LINQ AGAIN YOU ARE AN IDIOT
+(basically we're trying to not use foreach statements anymore (ESPECIALLY NOT IF STATEMENTS DUMBASS))
+
+ERROR HANDLING!!!
+c historically does not identify errors, and return code is considered bad form for doing so
+1.Try+Fail | try+fail => exception | (basically a bool) tries and does what you want, and if it cant returns an error (exception)
+2.Try Functions try | => return code (success/failiure)
+3.NeverFail (ignore this bitch)
+
+exceptions are objects, so you can do anything you can with any other object
+**google StackTrace fuck it google c# excpetions ein general ewiaofnieowaFUCK MAN IM GONNA GO BALLISTIC HOLY SHEEEET
+DUDE
+DUUUUDE
+UUUUUUUUGHHHHHHHHHH
+why is brain like this holy god why do i have the ewahithwaei cant even have fluent thoughts god what the ufck
