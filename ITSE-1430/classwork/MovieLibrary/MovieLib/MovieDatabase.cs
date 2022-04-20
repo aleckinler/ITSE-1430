@@ -34,13 +34,23 @@ namespace MovieLib
             if (existing != null)
                 //return "Movie must be unique";
                 //throw new InvalidOperationException("Movie must be unique");
-                throw new ArgumentException("Movie must be unique", nameof(movie));
+                throw new InvalidOperationException("Movie must be unique");
 
             //add (adds and item to your list, duh)
-            var newMovie = AddCore(movie);
+            try
+            {
+                var newMovie = AddCore(movie);
+            } catch (InvalidOperationException e)
+            {
+                throw;
+            } catch (Exception e)
+            {
+                //wrap it up in a generic expression
+                throw new Exception("Error adding movie", e);
+            };
             //movie.Id = newMovie.Id;
             //return "";
-            return newMovie;
+            //return newMovie;
         }
 
         protected abstract Movie AddCore ( Movie movie );

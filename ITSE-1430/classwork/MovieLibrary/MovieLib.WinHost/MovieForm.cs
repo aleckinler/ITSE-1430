@@ -65,7 +65,7 @@ namespace MovieLib.WinHost
             movie.ReleaseYear = ReadAsInt32(_txtReleaseYear, -1);
 
             //validate; close if valid
-            if (ObjectValidator.TryValidateObject(movie, out var errors))
+            //if (ObjectValidator.TryValidateObject(movie, out var errors))
             {
                 //valid
                 Movie = movie;
