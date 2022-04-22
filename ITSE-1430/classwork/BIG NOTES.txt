@@ -371,7 +371,7 @@ IF YOU IMPLEMENT AN INTERFACE, YOU MUST IMPLEMENT ALL OF ITS FUNCTIONALITY
 
 ---7:41 PM 4/7/2022---
 ABSTRACTION (not like the art thing but like the programming thing)
-useful as a middleground between tightly coupled code and interfaces (which are loosely coupled)
+useful as a middleground between tightly coupled code(a regular class) and interfaces (which are loosely coupled)
 abstraction is actually a form of inheritance
 an abstract class has at least one member that is declared, but has no actual implementation
 
@@ -455,3 +455,10 @@ DUDE
 DUUUUDE
 UUUUUUUUGHHHHHHHHHH
 why is brain like this holy god why do i have the ewahithwaei cant even have fluent thoughts god what the ufck
+
+---7:47 PM 4/19/2022---
+argumetnoutofrange
+validationexception - validator error
+invalidoperationexception - general use for the future i guess
+**google stack unwinding (and look at how exceptions interact with the call stack)
+exception handling is for EXCEPTIONAL CASES (this shit is costly interms of computing power)

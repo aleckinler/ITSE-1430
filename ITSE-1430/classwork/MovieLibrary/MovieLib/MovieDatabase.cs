@@ -40,12 +40,15 @@ namespace MovieLib
             try
             {
                 var newMovie = AddCore(movie);
+                return newMovie;
             } catch (InvalidOperationException e)
             {
+                //Pass through
+                // NEVER DO THIS -> throw e;
                 throw;
             } catch (Exception e)
             {
-                //wrap it up in a generic expression
+                //Wrap it in a generic exception
                 throw new Exception("Error adding movie", e);
             };
             //movie.Id = newMovie.Id;
